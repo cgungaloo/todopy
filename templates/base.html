@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Todo App</title>
+</head>
+
+<body>
+    <div class="container p-3 my-3 border">
+        <div class="jumbotron" style="background-color:#E6E6FA;">
+            <h1>To Do App</h1>
+        </div>
+        <form class="ui form" action="/add" , method="post">
+            <div>
+                <label>Todo Title</label>
+                <input type="text" name="title" placeholder="Enter Todo...">
+                <br>
+                <button type="submit">Add</button>
+            </div>
+        </form>
+
+
+        {% for todo in todo_list %}
+        <div class="container p-3 my-3 bg-primary text-white">
+            <p class="display-4">{{todo[0] }} | {{ todo[1] }}</p>
+            <form class="row" action="/update/{{ todo[0] }}" , method="post">
+                <label for="todo_options">Set Status</label>
+                <select name="todo_option" id="todo_option">
+                    <option value="Completed">Completed</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Not Started">Not Started</option>
+                </select>
+                <br>
+                <input class="ui blue button" type="submit" value="Submit">
+            </form>
+            <br/>
+            <a class="btn btn-danger"  href="/delete/{{ todo[0] }}">Delete</a>
+        </div>
+        {% endfor %}
+
+    </div>
+
+</body>
+
+</html>
