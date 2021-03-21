@@ -4,6 +4,7 @@ import json
 
 app = Flask(__name__, template_folder='templates')
 
+# code change for push notifications
 @app.route('/')
 def render_home():
     todo_list = db_actions.get_all_todo_items()
